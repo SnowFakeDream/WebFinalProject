@@ -70,14 +70,14 @@ namespace FinalProjectBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAnimalsTable(int id,[FromForm] FileUpload changeFile)
+        public async Task<IActionResult> PutAnimalsTable(int id,[FromForm] FileChange changeFile)
         {
             var animalsTable = await _context.AnimalsTable.FindAsync(id);
             if (id != animalsTable.AnimalId)
             {
                 return BadRequest();
             }
-            animalsTable.AnimalId = changeFile.AnimalId;
+            
             animalsTable.AnimalName = changeFile.AnimalName;
             animalsTable.AnimalDescription = changeFile.AnimalDescription;
             animalsTable.AnimalCount = changeFile.AnimalCount;

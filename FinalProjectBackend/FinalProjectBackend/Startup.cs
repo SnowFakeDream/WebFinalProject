@@ -30,6 +30,8 @@ namespace FinalProjectBackend
             services.AddControllers();
             services.AddSwaggerGen(options => { options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Animals API", Version = "v2", Description = "API for retreving animals" }); });
             services.AddDbContext<AnimalsContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+            services.AddCors(options => options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +45,8 @@ namespace FinalProjectBackend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
